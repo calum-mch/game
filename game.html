@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="260" height="600"></canvas>
+    <script>
+// Functions
+	function redraw(){
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		for (var x = 0; x < 601; x += 20) {
+			context.moveTo(x, 0);
+			context.lineTo(x, 600);
+		}
+		for (var y = 0; y < 601; y += 20) {
+			  context.moveTo(0, y);
+			  context.lineTo(600, y);
+		}
+		context.strokeStyle = "#ddd";
+		context.stroke();
+		context.fillStyle="#FF0000";
+		context.fillRect(posx, posy ,20,20);
+		console.log(posx, posy);
+	}
+      
+// Listners
+	  window.addEventListener("keydown", function(evt) {
+		if ( evt.keyCode == 37 ) { // Left
+			dir = "Moved Left"
+			posx = posx - 20
+		}
+		else if ( evt.keyCode == 38 ) { // Up
+			dir = "Moved Up"
+			posy = posy - 20
+		}
+		else if ( evt.keyCode == 39 ) { // Right
+			dir = "Moved Right"
+			posx = posx + 20
+		}
+		else if ( evt.keyCode == 40 ) { // Down
+			dir = "Moved Down"
+			posy = posy + 20
+		}
+		else { dir = "" }
+		console.log(dir, posx, posy);
+		redraw();
+	  }, true);
+	  
+// Main
+		var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        var posx = 20;
+        var posy = 20;
+
+		redraw();
+
+    </script>
+  </body>
+</html>
