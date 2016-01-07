@@ -4,11 +4,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
 import unittest
+import os
  
 class TestSequenceFunctions(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.PhantomJS(service_log_path=os.path.devnull)
 
     def test_selenium_hello_world(self):
         self.driver.get("http://www.google.com")
