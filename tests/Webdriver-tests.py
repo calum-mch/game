@@ -21,13 +21,13 @@ class TestSequenceFunctions(unittest.TestCase):
         wait.until(expected_conditions.element_to_be_clickable((By.ID,'resultStats')))
         assert self.driver.title == "cheese - Google Search"
 
-	def test_website_is_up(self):
-		try:
-			r = requests.head("http://stackoverflow.com")
-			c = r.status_code
-		except requests.ConnectionError:
-			c = "failed to connect"
-		assert c == 200
+    def test_website_is_up(self):
+        try:
+            r = requests.head("http://stackoverflow.com")
+            c = r.status_code
+        except requests.ConnectionError:
+            c = "failed to connect"
+        assert c == 200
         
     def tearDown(self):
         self.driver.close()
