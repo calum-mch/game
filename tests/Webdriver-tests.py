@@ -5,7 +5,8 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
 import unittest
 import os
- 
+import requests
+
 class TestSequenceFunctions(unittest.TestCase):
 
     def setUp(self):
@@ -19,6 +20,14 @@ class TestSequenceFunctions(unittest.TestCase):
         wait = WebDriverWait(self.driver, 10)
         wait.until(expected_conditions.element_to_be_clickable((By.ID,'resultStats')))
         assert self.driver.title == "cheese - Google Search"
+
+	def test_website_is_up(self):
+		try:
+			r = requests.head("http://stackoverflow.com")
+			c = r.status_code
+		except requests.ConnectionError:
+			c = "failed to connect"
+		assert c == 200
         
     def tearDown(self):
         self.driver.close()
